@@ -62,12 +62,15 @@ samtools mpileup -gf GCF_003254395.2_Amel_HAv3.1_genomic.fna {individual id}_nop
 bcftools call -vm {individual id}.bcf -o {individual id}.variants.bcf
 bcftools view -v snps,indels {individual id}.variants.bcf > {individual id}.snps.vcf
 ```
-
+- 4. filtering variant site
+```
 bcftools filter -o {individual id}.snps.filtered.vcf -i 'QUAL>20 &&DP>5' {individual id}.snps.vcf
+```
 
-
-# download Annovar
-wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz
+#### Annotate variant
+- 1. generate annovar input file
+##### download Annovar
+wget **annovar.latest.tar.gz** [link](http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz)
 
 convert2annovar.pl -format vcf4 {individual id}.snps.vcf > {individual id}.snps.avinput
 
