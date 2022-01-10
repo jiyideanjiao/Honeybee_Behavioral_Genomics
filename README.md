@@ -47,14 +47,21 @@ samtools depth {individual id}.sorted.bam > {individual id}_depth.txt
 ```
 samtools flagstat {individual id}.sorted.bam > {individual id}_counts.txt
 ```
-- 8. 
+
+#### Detect variant
+- 1. remove PCR duplication
+```
 samtools rmdup {individual id}.sorted.bam {individual id}_nopcr.bam
-
+```
+- 2. generate bcf file
+```
 samtools mpileup -gf GCF_003254395.2_Amel_HAv3.1_genomic.fna {individual id}_nopcr.bam > {individual id}.bcf
-
+```
+- 3. gene variantin detection
+```
 bcftools call -vm {individual id}.bcf -o {individual id}.variants.bcf
-
 bcftools view -v snps,indels {individual id}.variants.bcf > {individual id}.snps.vcf
+```
 
 bcftools filter -o {individual id}.snps.filtered.vcf -i 'QUAL>20 &&DP>5' {individual id}.snps.vcf
 
