@@ -51,7 +51,7 @@ bcftools filter -o {individual id}.snps.filtered.vcf -i 'QUAL>20 &&DP>5' {indivi
 
 
 # download Annovar
-# wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz
+wget http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz
 
 convert2annovar.pl -format vcf4 {individual id}.snps.vcf > {individual id}.snps.avinput
 
