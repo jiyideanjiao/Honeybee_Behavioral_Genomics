@@ -57,7 +57,7 @@ samtools rmdup {individual id}.sorted.bam {individual id}_nopcr.bam
 ```
 samtools mpileup -gf GCF_003254395.2_Amel_HAv3.1_genomic.fna {individual id}_nopcr.bam > {individual id}.bcf
 ```
-- 3. gene variantin detection
+- 3. variantion detection
 ```
 bcftools call -vm {individual id}.bcf -o {individual id}.variants.bcf
 bcftools view -v snps,indels {individual id}.variants.bcf > {individual id}.snps.vcf
