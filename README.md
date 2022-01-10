@@ -79,19 +79,21 @@ convert2annovar.pl -format vcf4 {individual id}.snps.vcf > {individual id}.snps.
 ```
 conda install -c bioconda ucsc-gff3togenepred
 ```
+```
 gff3ToGenePred -useName GCF_003254395.2_Amel_HAv3.1_genomic.gff genome_refGene.txt
-
+```
+```
 cut -f 12 genome_refGene.txt > column1.txt
 cut -f 2-15 genome_refGene.txt > column_else.txt
 paste column1.txt column_else.txt > genome_new_refGene.txt
-
-
+```
+```
 retrieve_seq_from_fasta.pl -format refGene -seqfile GCF_003254395.2_Amel_HAv3.1_genomic.fna -outfile genome_new_refGeneMrna.fa genome_new_refGene.txt
-
 cp genome_new_refGene* ./beedb/
-
+```
+```
 annotate_variation.pl --geneanno --dbtype refGene --buildver genome_new  {individual id}.snps.avinput ./beedb/
 mv *_function result
-
+```
 
 
