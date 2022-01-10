@@ -71,9 +71,14 @@ bcftools filter -o {individual id}.snps.filtered.vcf -i 'QUAL>20 &&DP>5' {indivi
 - 1. generate annovar input file
 ##### download Annovar
 wget **annovar.latest.tar.gz** [link](http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz)
-
+```
 convert2annovar.pl -format vcf4 {individual id}.snps.vcf > {individual id}.snps.avinput
-
+```
+- 2. build local bee database
+#### install UCSC gff3ToGenePred
+```
+conda install -c bioconda ucsc-gff3togenepred
+```
 gff3ToGenePred -useName GCF_003254395.2_Amel_HAv3.1_genomic.gff genome_refGene.txt
 
 cut -f 12 genome_refGene.txt > column1.txt
