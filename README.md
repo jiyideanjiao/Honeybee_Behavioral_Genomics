@@ -32,13 +32,22 @@ samtools faidx GCF_003254395.2_Amel_HAv3.1_genomic.fna
 samtools view -bhS -t GCF_003254395.2_Amel_HAv3.1_genomic.fna.fai -o {individual id}.bam {individual id}.sam
 ```
 - 4. sorting bam file
+```
 samtools sort {individual id}.bam -o {individual id}.sorted.bam
+```
+- 5. build index for bam file
+```
 samtools index {individual id}.sorted.bam
-
+```
+- 6. estimate the depth of sequencing
+```
 samtools depth {individual id}.sorted.bam > {individual id}_depth.txt
-
+```
+- 7. mapping summary
+```
 samtools flagstat {individual id}.sorted.bam > {individual id}_counts.txt
-
+```
+- 8. 
 samtools rmdup {individual id}.sorted.bam {individual id}_nopcr.bam
 
 samtools mpileup -gf GCF_003254395.2_Amel_HAv3.1_genomic.fna {individual id}_nopcr.bam > {individual id}.bcf
