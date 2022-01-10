@@ -1,4 +1,4 @@
-### honeybee genome resequencing
+### Honeybee genome resequencing
 
 - Authors: Chao Tong
 - Date: Jan-7-2022
