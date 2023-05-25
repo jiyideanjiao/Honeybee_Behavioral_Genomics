@@ -48,7 +48,32 @@ samtools depth {individual id}.sorted.bam > {individual id}_depth.txt
 samtools flagstat {individual id}.sorted.bam > {individual id}_counts.txt
 ```
 
-#### Detect variant
+#### Prepare Genotype and Phenotype file for GEMMA
+
+- 1. remove PCR duplication
+```
+samtools rmdup {individual id}.sorted.bam {individual id}_nopcr.bam
+```
+
+- 2. call snp
+
+```
+samtools mpileup -g -f <ReferenceGenome> <All file names> | 
+bcftools call --skip-variants indels --variants-only -mv -Oz > Output.vcf.gz
+```
+
+- 3. extract dosage and genotype likelihoods
+
+```
+bcftools +dosage Output.vcf -- -t GL
+```
+
+- 4. Create relatedness matrix
+```
+gemmma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
+```
+
+#### Detect variant (optional)
 - 1. remove PCR duplication
 ```
 samtools rmdup {individual id}.sorted.bam {individual id}_nopcr.bam
@@ -66,6 +91,8 @@ bcftools view -v snps,indels {individual id}.variants.bcf > {individual id}.snps
 ```
 bcftools filter -o {individual id}.snps.filtered.vcf -i 'QUAL>20 &&DP>5' {individual id}.snps.vcf
 ```
+
+
 
 #### Annotate variant
 - 1. generate annovar input file
