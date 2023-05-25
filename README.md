@@ -75,7 +75,7 @@ gemmma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
 
 - 5. GEMMA run
 ```
-gemmma -g Genotype.txt -p Phenotype.txt -k Relatedness.txt -lmm 4 -o Results.txt
+gemmma -g Genotype.txt -p Phenotype.txt -n <num of trait> -k Relatedness.txt -lm 4 -o Results.txt
 ```
 
 #### Detect variant (optional)
