@@ -68,7 +68,7 @@ bcftools call --skip-variants indels --variants-only -mv -Oz > Output.vcf.gz
 bcftools +dosage Output.vcf -- -t GL
 ```
 
-- 4. Create relatedness matrix
+- 4. create relatedness matrix
 ```
 gemmma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
 ```
