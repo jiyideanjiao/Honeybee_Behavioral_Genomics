@@ -73,6 +73,11 @@ bcftools +dosage Output.vcf -- -t GL
 gemmma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
 ```
 
+- 5. GEMMA run
+```
+gemmma -g Genotype.txt -p Phenotype.txt -k Relatedness.txt -lmm 4 -o Results.txt
+```
+
 #### Detect variant (optional)
 - 1. remove PCR duplication
 ```
