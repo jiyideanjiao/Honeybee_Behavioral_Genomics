@@ -61,7 +61,10 @@ samtools rmdup {individual id}.sorted.bam {individual id}_nopcr.bam
 samtools mpileup -g -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
 ```
-
+```
+bcftools mpileup -f <ReferenceGenome> <All file names> | 
+bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
+```
 - 3. extract dosage and genotype likelihoods
 
 ```
