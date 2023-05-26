@@ -29,7 +29,7 @@ bwa mem GCF_003254395.2_Amel_HAv3.1_genomic.fna {individual id}_R1.fq {individua
 - 3. transform sam file to bam file
 ```
 samtools faidx GCF_003254395.2_Amel_HAv3.1_genomic.fna
-samtools view -bhS -t GCF_003254395.2_Amel_HAv3.1_genomic.fna.fai -o {individual id}.bam {individual id}.sam
+samtools view -bhS -t GCF_003254395.2_Amel_HAv3.1_genomic.fna.fai {individual id}.sam -o {individual id}.bam
 ```
 - 4. sorting bam file
 ```
