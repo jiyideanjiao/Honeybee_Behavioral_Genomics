@@ -71,12 +71,12 @@ bcftools +dosage output.vcf > output.dosage.txt
 
 - 4. create relatedness matrix
 ```
-gemmma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
+gemma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
 ```
 
 - 5. GEMMA run
 ```
-gemmma -g Genotype.txt -p Phenotype.txt -n <num of trait> -k Relatedness.txt -lm 4 -o Results.txt
+gemma -g Genotype.txt -p Phenotype.txt -n <num of trait> -k Relatedness.txt -lm 4 -o Results.txt
 ```
 
 #### Detect variant (optional)
