@@ -74,7 +74,7 @@ bcftools +dosage output.vcf > output.dosage.txt
 - 5. create relatedness matrix
 
 ```
-gemma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
+gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
 ```
 OR
 ```
