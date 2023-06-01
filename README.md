@@ -91,20 +91,16 @@ gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -l
 ```
 
 #### Detect variant (optional)
-- 1. remove PCR duplication
-```
-samtools rmdup {id}.sorted.bam {id}_nopcr.bam
-```
-- 2. generate bcf file
+
+- 1. generate bcf file
 ```
 samtools mpileup -gf GCF_003254395.2_Amel_HAv3.1_genomic.fna {id}_nopcr.bam > {id}.bcf
 ```
-- 3. variantion detection
+- 2. variantion detection
 ```
 bcftools call -vm {id}.bcf -o {id}.variants.bcf
 bcftools view -v snps,indels {id}.variants.bcf > {id}.snps.vcf
 ```
-
 
 #### Annotate Variant With Annovar
 - 1. generate annovar input file
