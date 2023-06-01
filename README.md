@@ -52,12 +52,12 @@ samtools flagstat {id}.sorted.bam > {id}_counts.txt
 samtools rmdup {id}.sorted.bam {id}_nopcr.bam
 ```
 - 2. variant calling
-option 1
+
 ```
 samtools mpileup -g -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
 ```
-option 2
+OR
 ```
 bcftools mpileup -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
@@ -72,11 +72,11 @@ bcftools filter -o bee.snps.filtered.vcf -i 'QUAL>20 &&DP>5' output.vcf
 bcftools +dosage output.vcf > output.dosage.txt
 ```
 - 5. create relatedness matrix
-option 1
+
 ```
 gemma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
 ```
-option 2
+OR
 ```
 vcftools --vcf bee.snps.filtered.vcf --plink --out output
 ```
@@ -85,9 +85,9 @@ This command will generate two output files: output.ped and output.map
 vcftools --ped output.ped --map output.map --relatedness2 --out relatedness
 ```
 
-- 5. GEMMA run
+- 5. run GEMMA
 ```
-gemma -g Genotype.txt -p Phenotype.txt -n <num of trait> -k Relatedness.txt -lm 4 -o Results.txt
+gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -lm 4 -o <Trait name>
 ```
 
 #### Detect variant (optional)
@@ -106,9 +106,7 @@ bcftools view -v snps,indels {id}.variants.bcf > {id}.snps.vcf
 ```
 
 
-
-
-#### Annotate variant
+#### Annotate Variant With Annovar
 - 1. generate annovar input file
 download and install **Annovar** [link](http://www.openbioinformatics.org/annovar/download/0wgxR2rIVP/annovar.latest.tar.gz)
 ```
@@ -134,3 +132,6 @@ cp genome_new_refGene* ./beedb/
 annotate_variation.pl --geneanno --dbtype refGene --buildver genome_new  {id}.snps.avinput ./beedb/
 mv *_function result
 ```
+
+#### Annotate Variant With snpEff
+
