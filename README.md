@@ -51,27 +51,38 @@ samtools flagstat {id}.sorted.bam > {id}_counts.txt
 ```
 samtools rmdup {id}.sorted.bam {id}_nopcr.bam
 ```
-
-- 2. call snp
-
+- 2. variant calling
+option 1
 ```
 samtools mpileup -g -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
 ```
+option 2
 ```
 bcftools mpileup -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
 ```
-- 3. extract dosage and genotype likelihoods
-
+- 3. variant filtering
 ```
-bcftools +dosage output.vcf -- -t GL
+gunzip output.vcf.gz
+bcftools filter -o bee.snps.filtered.vcf -i 'QUAL>20 &&DP>5' output.vcf
+```
+- 4. extract dosage and genotype likelihoods
+```
 bcftools +dosage output.vcf > output.dosage.txt
 ```
-
-- 4. create relatedness matrix
+- 5. create relatedness matrix
+option 1
 ```
 gemma -g Genotype.txt -p Phenotype.txt -gk 1 -o Relatedness.txt
+```
+option 2
+```
+vcftools --vcf bee.snps.filtered.vcf --plink --out output
+```
+This command will generate two output files: output.ped and output.map
+```
+vcftools --ped output.ped --map output.map --relatedness2 --out relatedness
 ```
 
 - 5. GEMMA run
@@ -93,10 +104,7 @@ samtools mpileup -gf GCF_003254395.2_Amel_HAv3.1_genomic.fna {id}_nopcr.bam > {i
 bcftools call -vm {id}.bcf -o {id}.variants.bcf
 bcftools view -v snps,indels {id}.variants.bcf > {id}.snps.vcf
 ```
-- 4. filtering variant site
-```
-bcftools filter -o {id}.snps.filtered.vcf -i 'QUAL>20 &&DP>5' {id}.snps.vcf
-```
+
 
 
 
