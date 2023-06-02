@@ -40,7 +40,7 @@ picard MarkDuplicates I={id}.bam O={id}.rmd.bam REMOVE_DUPLICATES=true ASSUME_SO
 ```
 samtools index *.rmd.bam
 ```
-- 6. call variant
+- 6. calling variant
 ```
 bcftools mpileup -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
