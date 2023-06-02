@@ -51,7 +51,7 @@ bcftools filter -o bee.snps.filtered.vcf -i 'QUAL>20 &&DP>5' output.vcf
 bcftools +dosage output.vcf > output.dosage.txt
 ```
 
-#### Preparing Genotype and Phenotype file for running GEMMA
+#### Prepare Genotype and Phenotype file for running GEMMA
 
 - 1. create relatedness matrix
 ```
