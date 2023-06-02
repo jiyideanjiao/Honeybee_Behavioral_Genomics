@@ -43,7 +43,7 @@ samtools index *.rmd.bam
 - 6. calling variant
 ```
 bcftools mpileup -f <ReferenceGenome> <All file names> | 
-bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
+bcftools call --skip-variants indels --variants-only -mv -Oz -o output.vcf.gz
 ```
 ### Filter variant
 ```
