@@ -77,15 +77,20 @@ bcftools +dosage output.vcf > output.dosage.txt
 gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
 ```
 
-This command will generate two output files: output.ped and output.map
-```
-vcftools --ped output.ped --map output.map --relatedness2 --out relatedness
-```
-
 - 5. run GEMMA
 ```
 gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -lm 4 -o <Trait name>
 ```
+
+#### Preparing Genotype and Phenotype file for running GEMMA with large scale of variants
+- 1.
+```
+vcftools --vcf bee.snps.filtered.vcf --plink --out output
+plink --file output --make-bed --out final
+```
+The first command will generate two output files: output.ped and output.map
+The second command will generate five output files: final.bed, final.bim, final.fam, final.log, final.nosex
+
 
 #### Detect variant (optional)
 
