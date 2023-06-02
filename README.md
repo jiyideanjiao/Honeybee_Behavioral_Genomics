@@ -83,15 +83,18 @@ gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -l
 ```
 
 #### Preparing Genotype and Phenotype file for running GEMMA with large scale of variants
-- 1.
+- 1. preparing the bed file
 ```
 vcftools --vcf bee.snps.filtered.vcf --plink --out output
 plink --file output --make-bed --out final
 ```
 The first command will generate two output files: output.ped and output.map
 The second command will generate five output files: final.bed, final.bim, final.fam, final.log, final.nosex
-
-
+- 2. preparing relatedness matrix
+```
+gemma -bfile final -p <phenotype> -gk -o <relatedness>
+gemma -bfile final -p <Phenotype> -n <num of column: Trait> -k <relatedness> -lm 4 -o <Trait name>
+```
 #### Detect variant (optional)
 
 - 1. generate bcf file
