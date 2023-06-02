@@ -6,18 +6,13 @@
 - Project description:
 
 #### Qulity control
-```
-conda install -c bioconda fastqc
-conda install -c bioconda trimmomatic
-```
+
 ```
 fastqc {id}.fastq
 trimmomatic PE *R1_001.fastq.gz *R2_001.fastq.gz -baseout trimmed.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:35
 ```
 #### Map Reads to Bee Genome
-```
-conda install -c bioconda bwa
-```
+
 - 1. build genome index
 ```
 bwa index GCF_003254395.2_Amel_HAv3.1_genomic.fna
