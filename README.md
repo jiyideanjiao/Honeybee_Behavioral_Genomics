@@ -76,10 +76,7 @@ bcftools +dosage output.vcf > output.dosage.txt
 ```
 gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
 ```
-OR
-```
-vcftools --vcf bee.snps.filtered.vcf --plink --out output
-```
+
 This command will generate two output files: output.ped and output.map
 ```
 vcftools --ped output.ped --map output.map --relatedness2 --out relatedness
