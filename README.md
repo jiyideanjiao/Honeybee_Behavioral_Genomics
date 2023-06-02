@@ -31,66 +31,52 @@ bwa mem GCF_003254395.2_Amel_HAv3.1_genomic.fna {id}_R1.fq {id}_R2.fq > {id}.sam
 samtools faidx GCF_003254395.2_Amel_HAv3.1_genomic.fna
 samtools view -bhS -t GCF_003254395.2_Amel_HAv3.1_genomic.fna.fai {id}.sam -o {id}.bam
 ```
-- 4. sorting bam file
+- 4. sort bam file
 ```
 samtools sort {id}.bam -o {id}.sorted.bam
 ```
-- 5. build index for bam file
-```
-samtools index {id}.sorted.bam
-```
-- 6. estimate the depth
-```
-samtools depth {id}.sorted.bam > {id}_depth.txt
-samtools flagstat {id}.sorted.bam > {id}_counts.txt
-```
-
-#### Preparing Genotype and Phenotype file for running GEMMA
-
-- 1. remove PCR duplication
+- 5. remove PCR duplication
 ```
 samtools rmdup {id}.sorted.bam {id}_nopcr.bam
 ```
-- 2. variant calling
-
-```
-samtools mpileup -g -f <ReferenceGenome> <All file names> | 
-bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
-```
-OR
+- 6. call variant
 ```
 bcftools mpileup -f <ReferenceGenome> <All file names> | 
 bcftools call --skip-variants indels --variants-only -mv -Oz > output.vcf.gz
 ```
-- 3. variant filtering
+### Filter variant
 ```
 gunzip output.vcf.gz
 bcftools filter -o bee.snps.filtered.vcf -i 'QUAL>20 &&DP>5' output.vcf
 ```
-- 4. extract dosage and genotype likelihoods
+
+
+- 1. extract dosage and genotype likelihoods
 ```
 bcftools +dosage output.vcf > output.dosage.txt
 ```
-- 5. create relatedness matrix
 
+#### Preparing Genotype and Phenotype file for running GEMMA
+
+- 1. create relatedness matrix
 ```
 gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
 ```
 
-- 5. run GEMMA
+- 2. run GEMMA
 ```
 gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -lm 4 -o <Trait name>
 ```
 
-#### Preparing Genotype and Phenotype file for running GEMMA with large scale of variants
-- 1. preparing the bed file
+#### Prepare Genotype and Phenotype file for running GEMMA with large scale of variants
+- 1. prepare the bed file
 ```
 vcftools --vcf bee.snps.filtered.vcf --plink --out output
 plink --file output --make-bed --out final
 ```
 The first command will generate two output files: output.ped and output.map
 The second command will generate five output files: final.bed, final.bim, final.fam, final.log, final.nosex
-- 2. preparing relatedness matrix
+- 2. prepare relatedness matrix
 ```
 gemma -bfile final -p <phenotype> -gk -o <relatedness>
 gemma -bfile final -p <Phenotype> -n <num of column: Trait> -k <relatedness> -lm 4 -o <Trait name>
