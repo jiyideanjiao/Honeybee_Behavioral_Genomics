@@ -14,7 +14,7 @@ conda install -c bioconda trimmomatic
 fastqc {id}.fastq
 trimmomatic PE *R1_001.fastq.gz *R2_001.fastq.gz -baseout trimmed.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:35
 ```
-#### Mapping Reads to Bee Genome
+#### Map Reads to Bee Genome
 ```
 conda install -c bioconda bwa
 ```
