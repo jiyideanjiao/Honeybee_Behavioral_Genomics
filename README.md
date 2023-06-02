@@ -34,6 +34,9 @@ samtools sort {id}.bam -o {id}.sorted.bam
 ```
 samtools rmdup {id}.sorted.bam {id}_nopcr.bam
 ```
+```
+picard MarkDuplicates I={id}.bam O={id}.rmd.bam REMOVE_DUPLICATES=true ASSUME_SORTED=true VALIDATION_STRINGENCY=SILENT MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000
+```
 - 6. call variant
 ```
 bcftools mpileup -f <ReferenceGenome> <All file names> | 
