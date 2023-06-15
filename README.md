@@ -74,6 +74,7 @@ gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -l
 ```
 vcftools --vcf bee.snps.filtered.vcf --plink --out output
 plink --file output --make-bed --out final
+plink --bfile final --freq --out MAF_check
 ```
 - The first command will generate two output files: output.ped and output.map
 - The second command will generate five output files: final.bed, final.bim, final.fam, final.log, final.nosex
