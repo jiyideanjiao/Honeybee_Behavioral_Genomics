@@ -60,9 +60,15 @@ bcftools +dosage output.vcf > output.dosage.txt
 bcftools +dosage behavior_filter1.vcf > behavior.dosage1
 bcftools +dosage behavior_filter2.vcf > behavior.dosage2
 bcftools +dosage behavior_filter3.vcf > behavior.dosage3
+bcftools +dosage chc_filter2.vcf > chc.dosage2
+bcftools +dosage chc_filter3.vcf > chc.dosage3
+bcftools +dosage chc_filter4.vcf > chc.dosage4
+bcftools +dosage chc_filter5.vcf > chc.dosage5
 ```
-
-#### Prepare Genotype and Phenotype file for running GEMMA
+```
+bcftools +dosage bee_filter8.vcf > bee.dosage8
+```
+#### Prepare Genotype and Phenotype files for running GEMMA
 
 - 1. create relatedness matrix
 ```
@@ -72,6 +78,9 @@ gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
 gemma -g behavior.dosage1 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior1
 gemma -g behavior.dosage2 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior2
 gemma -g behavior.dosage3 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior3
+```
+```
+gemma -g bee.dosage8 -p bee_phenotypes.txt -gk 1 -o relatedness
 ```
 
 - 2. run GEMMA
