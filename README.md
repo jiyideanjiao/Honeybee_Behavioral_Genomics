@@ -72,7 +72,7 @@ gemma -g <Genotype> -p <Phenotype> -n <num of column: Trait> -k <relatedness> -l
 #### Prepare Genotype and Phenotype file for running GEMMA with large scale of variants
 - 1. prepare the bed file
 ```
-vcftools --vcf bee.snps.filtered.vcf --plink --out output
+vcftools --vcf bee.vcf --plink --out output
 plink --file output --make-bed --out final
 plink --bfile final --freq --out MAF_check
 ```
