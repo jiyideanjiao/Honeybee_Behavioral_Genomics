@@ -56,12 +56,22 @@ bcftools filter -o bee.snps.filtered.vcf -i 'QUAL>20 &&DP>5' output.vcf
 ```
 bcftools +dosage output.vcf > output.dosage.txt
 ```
+```
+bcftools +dosage behavior_filter1.vcf > behavior.dosage1
+bcftools +dosage behavior_filter2.vcf > behavior.dosage2
+bcftools +dosage behavior_filter3.vcf > behavior.dosage3
+```
 
 #### Prepare Genotype and Phenotype file for running GEMMA
 
 - 1. create relatedness matrix
 ```
 gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
+```
+```
+gemma -g behavior.dosage1 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior1
+gemma -g behavior.dosage2 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior2
+gemma -g behavior.dosage3 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior3
 ```
 
 - 2. run GEMMA
