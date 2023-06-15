@@ -78,6 +78,10 @@ gemma -g <Genotype> -p <Phenotype> -gk 1 -o <Relatedness>
 gemma -g behavior.dosage1 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior1
 gemma -g behavior.dosage2 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior2
 gemma -g behavior.dosage3 -p behavior_phenotype.txt -gk 1 -o relatedness_behavior3
+gemma -g chc.dosage2 -p chc_phenotype.txt -gk 1 -o relatedness_chc2
+gemma -g chc.dosage3 -p chc_phenotype.txt -gk 1 -o relatedness_chc3
+gemma -g chc.dosage4 -p chc_phenotype.txt -gk 1 -o relatedness_chc4
+gemma -g chc.dosage5 -p chc_phenotype.txt -gk 1 -o relatedness_chc5
 ```
 ```
 gemma -g bee.dosage8 -p bee_phenotypes.txt -gk 1 -o relatedness
